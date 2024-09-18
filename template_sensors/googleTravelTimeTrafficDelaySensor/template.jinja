@@ -1,0 +1,17 @@
+{% set textDuration = (states.sensor.TRAVEL_SENSOR_ID.attributes.duration).split(" ") %}
+{% set totalDuration = states.sensor.TRAVEL_SENSOR_ID.state | int%}
+
+{% set textParts = textDuration | length %}
+
+{% set duration = textDuration[textParts - 2] | int %}
+
+{% if textParts == 4 %}
+  {% if textDuration[1].startswith("day") %}
+    {% set duration = duration * 60 %}
+    {% set duration = duration + ((textDuration[textParts - 4] | int) * 24 * 60) %}
+  {%else %}
+    {% set duration = duration + ((textDuration[textParts - 4] | int) * 60)%}
+  {%endif %}
+{%endif %}
+
+{{totalDuration - duration}}
