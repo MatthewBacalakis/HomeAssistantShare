@@ -1,0 +1,8 @@
+template:
+  - binary_sensor:
+      - name: "Washing Machine Running"
+        unique_id: wash_machine_running
+        delay_off:
+          minutes: 1
+        device_class: "running"
+        state: "{{ states('sensor.ELECTRIC_CONSUMPTION_SENSOR') | float >= IDLE_USAGE_THRESHOLD  }}"
