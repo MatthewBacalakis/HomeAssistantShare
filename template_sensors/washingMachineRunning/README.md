@@ -1,0 +1,5 @@
+# Summary
+Desiring notifications that my washing machine has finished a cycle I plugged it into a Z-Wave smart plug with energy monitoring.  After observing it for a cycle I noticed that on but idle draws about 4 Watts.  While washing, that draw is many times higher but periodically drops to idle for a few seconds.  This templated binary sensor uses energy draw to indicate whether the washer is Running/Not Running.  `delay_off: 1` ensures that the load must be idle (or lower) for a full minute before updating the sensor to Not Running.  I then created an automation sending a notification based on this sensor.  In that automation `YOUR_PHONE` under the action will vary based on your type of phone (ex: pixel_9)
+
+`ELECTRIC_CONSUMPTION_SENSOR` should be replaced with the name of the sensor that tracks energy usage by the plug.
+`IDLE_USAGE_THRESHOLD` should be set to a number indicating the upper limit of energy usage while idle.  With my washer drawing 4W while idle I set this to 6.

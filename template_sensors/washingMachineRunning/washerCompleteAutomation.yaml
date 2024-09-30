@@ -1,0 +1,19 @@
+alias: Clothes Wash Complete
+description: ""
+trigger:
+  - platform: state
+    entity_id:
+      - binary_sensor.washing_machine_running
+    to: "off"
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 0
+    from: "on"
+condition: []
+action:
+  - data:
+      message: Washing is complete.
+      title: Washer done
+    action: notify.mobile_app_YOUR_PHONE
+mode: single
